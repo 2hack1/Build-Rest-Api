@@ -1,7 +1,20 @@
 package com.firstRESt;
 
-public class BooksDetails {
+import org.eclipse.jdt.internal.compiler.lookup.TypeConstants.DangerousMethod;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="books")
+public class BooksDetails {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="Book_id")
 	private int id;
 	private String auther;
 	private String title;
