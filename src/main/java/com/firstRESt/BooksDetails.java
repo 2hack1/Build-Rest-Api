@@ -2,24 +2,32 @@ package com.firstRESt;
 
 import org.eclipse.jdt.internal.compiler.lookup.TypeConstants.DangerousMethod;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.core.sym.Name;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name="books")
 public class BooksDetails {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="Book_id")
+    
+    @GeneratedValue(strategy = GenerationType.AUTO)  
+    @Id   
 	private int id;
-	private String auther;
+    
+    @OneToOne(cascade = CascadeType.ALL) 
+   // @JsonBackReference
+	private Auther auther;
 	private String title;
 
-	public BooksDetails(int id, String auther, String title) {
+	public BooksDetails(int id, Auther auther, String title) {
 		super();
 		this.id = id;
 		this.auther = auther;
@@ -39,11 +47,11 @@ public class BooksDetails {
 		this.id = id;
 	}
 
-	public String getAuther() {
+	public Auther getAuther() {
 		return auther;
 	}
 
-	public void setAuther(String auther) {
+	public void setAuther(Auther auther) {
 		this.auther = auther;
 	}
 
